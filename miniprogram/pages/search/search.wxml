@@ -1,0 +1,107 @@
+<!--pages/search/search.wxml 搜索-->
+<view class="search-page">
+
+  <!-- 搜索框 -->
+  <view class="search-top">
+    <view class="searchbar">
+      <image class="searchbar-ico" src="/images/icons/search.png" mode="aspectFit" />
+      <input
+        class="search-input"
+        value="{{keyword}}"
+        placeholder="搜一搜家乡的味道，例如「老干妈」"
+        placeholder-class="search-input-ph"
+        confirm-type="search"
+        bindinput="onInput"
+        bindconfirm="onConfirm"
+      />
+      <view wx:if="{{keyword}}" class="search-clear" catchtap="onClearKeyword">✕</view>
+    </view>
+  </view>
+
+  <!-- ===== 搜索前：历史 + 热搜 ===== -->
+  <block wx:if="{{!searched}}">
+    <view class="s-block" wx:if="{{history.length}}">
+      <view class="s-head">
+        <text class="s-title">最近搜索</text>
+        <text class="s-action" bindtap="onClearHistory">清空</text>
+      </view>
+      <view class="chips">
+        <text
+          class="chip"
+          wx:for="{{history}}"
+          wx:key="*this"
+          data-kw="{{item}}"
+          bindtap="onTagTap"
+        >{{item}}</text>
+      </view>
+    </view>
+
+    <view class="s-block">
+      <view class="s-head">
+        <text class="s-title">大家都在找</text>
+        <text class="s-hint">点了就能直接搜</text>
+      </view>
+      <view class="chips">
+        <text
+          class="chip chip-hot"
+          wx:for="{{hot}}"
+          wx:key="*this"
+          data-kw="{{item}}"
+          bindtap="onTagTap"
+        >{{item}}</text>
+      </view>
+    </view>
+
+    <view class="s-tip">
+      <view class="s-tip-title">找不到想要的？</view>
+      <view class="s-tip-desc">把想买的写下来，到店告诉我们，我们帮你订</view>
+    </view>
+  </block>
+
+  <!-- ===== 搜索后：结果 ===== -->
+  <block wx:else>
+    <!-- 搜索中：小猫钻进货架之间找 -->
+    <cat-loading
+      wx:if="{{searching}}"
+      mode="inline"
+      text="小猫正在货架间找…"
+      sub="「{{keyword}}」"
+      dots="{{false}}"
+    />
+
+    <block wx:else>
+    <view class="s-result-head">
+      <text>「{{keyword}}」</text>
+      <text class="s-result-count">共 {{results.length}} 件商品</text>
+    </view>
+
+    <view wx:if="{{results.length}}" class="goods-grid">
+      <view class="goods-cell" wx:for="{{results}}" wx:key="id">
+        <goods-card
+          item="{{item}}"
+          currency="{{shop.currency}}"
+          bind:add="onAdd"
+          bindtap="onGoods"
+          data-id="{{item.id}}"
+        />
+      </view>
+    </view>
+
+    <view wx:else class="empty">
+      <view class="empty-ico">🔍</view>
+      <view class="empty-title">没找到「{{keyword}}」</view>
+      <view class="empty-desc">换个说法试试，或者去分类里慢慢逛</view>
+      <view class="btn-ghost empty-btn" bindtap="onGoCategory">去分类看看</view>
+    </view>
+    </block>
+  </block>
+</view>
+
+<!-- 小猫加载：全站统一的等待动画（js 里可用 utils/cat-loading 直接调用） -->
+<cat-loading
+  id="cat-loading"
+  mode="page"
+  show="{{catShow}}"
+  text="{{catText}}"
+  sub="{{catSub}}"
+/>

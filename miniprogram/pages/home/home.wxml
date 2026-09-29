@@ -1,0 +1,121 @@
+<!--pages/home/home.wxml 主页-->
+<scroll-view
+  class="home-scroll"
+  scroll-y="{{true}}"
+  refresher-enabled="{{true}}"
+  refresher-threshold="{{80}}"
+  refresher-default-style="none"
+  refresher-triggered="{{refreshing}}"
+  bindrefresherpulling="onRefresherPulling"
+  bindrefresherrefresh="onRefresh"
+  bindrefresherrestore="onRefresherRestore"
+>
+  <!-- 下拉刷新：让小猫去进货（自己画的，不用微信默认那三个点） -->
+  <view class="cat-refresher" slot="refresher">
+    <cat-loading mode="refresher" text="{{refreshText}}" dots="{{false}}" />
+  </view>
+
+  <view class="home">
+
+  <!-- ===== 品牌头部 ===== -->
+  <view class="hero">
+    <view class="hero-row">
+      <view class="hero-logo">{{shop.shortName}}</view>
+      <view class="hero-txt">
+        <view class="hero-name">{{shop.name}}</view>
+        <view class="hero-slogan">{{shop.slogan}}</view>
+      </view>
+    </view>
+
+    <view class="searchbar hero-search" bindtap="onSearch" hover-class="tap-dim">
+      <image class="searchbar-ico" src="/images/icons/search.png" mode="aspectFit" />
+      <text class="searchbar-ph">搜一搜：老干妈、五常大米、水饺…</text>
+    </view>
+
+    <view class="hero-tips">
+      <text class="hero-tip">{{shop.pickup}}</text>
+      <text class="hero-tip">{{shop.delivery}}</text>
+    </view>
+  </view>
+
+  <!-- ===== 轮播图（图片位） ===== -->
+  <view class="banner-wrap">
+    <swiper
+      class="banner"
+      indicator-dots
+      circular
+      autoplay
+      interval="4200"
+      duration="500"
+      indicator-color="rgba(255,255,255,0.55)"
+      indicator-active-color="#ffffff"
+    >
+      <swiper-item wx:for="{{banners}}" wx:key="id">
+        <view class="banner-item" data-title="{{item.title}}" bindtap="onBannerTap">
+          <image wx:if="{{item.image}}" class="banner-img" src="{{item.image}}" mode="aspectFill" />
+          <view wx:else class="banner-ph">
+            <view class="banner-ph-title">{{item.title}}</view>
+            <view class="banner-ph-sub">{{item.sub}}</view>
+            <view class="banner-ph-hint">轮播图 750 × 340</view>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+
+  <!-- ===== 分类金刚区 ===== -->
+  <view class="nav-grid card">
+    <view
+      class="nav-item"
+      wx:for="{{navs}}"
+      wx:key="id"
+      data-id="{{item.id}}"
+      bindtap="onCategoryTap"
+      hover-class="tap-dim"
+    >
+      <view class="nav-ico">
+        <image wx:if="{{item.image}}" class="nav-img" src="{{item.image}}" mode="aspectFill" />
+        <text wx:else class="nav-emoji">{{item.emoji}}</text>
+      </view>
+      <text class="nav-name">{{item.name}}</text>
+    </view>
+  </view>
+
+  <!-- ===== 商品区块 ===== -->
+  <view class="sec" wx:for="{{sections}}" wx:for-item="sec" wx:key="id">
+    <view class="sec-head">
+      <view>
+        <view class="sec-title-wrap">
+          <view class="sec-bar"></view>
+          <text class="sec-title">{{sec.title}}</text>
+        </view>
+        <view class="sec-sub">{{sec.sub}}</view>
+      </view>
+      <text class="sec-more" data-id="{{sec.id}}" bindtap="onCategoryTap">全部 ›</text>
+    </view>
+
+    <view class="goods-grid">
+      <view class="goods-cell" wx:for="{{sec.list}}" wx:for-item="item" wx:key="id">
+        <goods-card
+          item="{{item}}"
+          currency="{{shop.currency}}"
+          bind:add="onAdd"
+          bindtap="onGoods"
+          data-id="{{item.id}}"
+        />
+      </view>
+    </view>
+  </view>
+
+    <view class="footer-note">— 更多家乡好物正在上架 —</view>
+  </view>
+</scroll-view>
+
+<!-- 整屏小猫加载：页面第一次进来、或者要等比较久的时候都走它 -->
+<cat-loading
+  id="cat-loading"
+  mode="page"
+  show="{{catShow}}"
+  text="{{catText}}"
+  sub="{{catSub}}"
+/>

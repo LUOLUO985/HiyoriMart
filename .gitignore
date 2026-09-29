@@ -1,0 +1,14 @@
+# ---------- 依赖 / 开发者工具生成 ----------
+node_modules/
+miniprogram_npm/
+miniprogram/miniprogram_npm/
+
+# ---------- 微信开发者工具的本地私有配置 ----------
+# 每个人的编译器版本、调试设置都不一样，不进仓库（新建项目时会自动生成）
+project.private.config.json
+
+# ---------- 系统 / 编辑器 ----------
+.DS_Store
+*.log
+.idea/
+.vscode/

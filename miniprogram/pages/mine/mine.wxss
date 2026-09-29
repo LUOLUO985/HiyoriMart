@@ -1,0 +1,211 @@
+/* pages/mine/mine.wxss */
+.mine {
+  padding: 0 24rpx;
+}
+
+/* ===== 用户卡 ===== */
+.mine-head {
+  margin-top: 24rpx;
+  padding: 36rpx 32rpx 24rpx;
+  border-radius: var(--r-lg);
+  background: linear-gradient(150deg, #fff5ea 0%, #fbe2c9 60%, #f5d4b2 100%);
+  box-shadow: 0 12rpx 26rpx rgba(150, 100, 60, 0.12);
+  position: relative;
+  overflow: hidden;
+}
+
+.mine-head::after {
+  content: "";
+  position: absolute;
+  right: -70rpx;
+  top: -80rpx;
+  width: 260rpx;
+  height: 260rpx;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.mine-user {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+}
+
+.mine-avatar {
+  width: 118rpx;
+  height: 118rpx;
+  flex: none;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #fdf1e4, #f3ddc4);
+  border: 2rpx dashed rgba(194, 90, 46, 0.3);
+}
+
+.mine-avatar-img {
+  width: 100%;
+  height: 100%;
+}
+
+.mine-avatar-txt {
+  font-size: 24rpx;
+  color: #c0a88f;
+}
+
+.mine-user-txt {
+  margin-left: 24rpx;
+}
+
+.mine-name {
+  font-size: 36rpx;
+  font-weight: 600;
+  letter-spacing: 1rpx;
+}
+
+.mine-desc {
+  font-size: 23rpx;
+  color: #ab7f5f;
+  margin-top: 10rpx;
+}
+
+.mine-badges {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  margin-top: 32rpx;
+  background: rgba(255, 255, 255, 0.62);
+  border-radius: 20rpx;
+  padding: 20rpx 0;
+}
+
+.mine-badge {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mine-badge-num {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--brand);
+}
+
+.mine-badge-txt {
+  font-size: 22rpx;
+  color: #ab7f5f;
+  margin-top: 6rpx;
+}
+
+/* ===== 卡片 ===== */
+.mine-card {
+  margin-top: 24rpx;
+  background: #fff;
+  border-radius: var(--r);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.mine-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 26rpx 28rpx 10rpx;
+}
+
+.mine-card-title {
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.mine-card-more {
+  font-size: 24rpx;
+  color: var(--ink-3);
+}
+
+/* 订单四宫格 */
+.mine-orders {
+  display: flex;
+  padding: 20rpx 8rpx 28rpx;
+}
+
+.mine-order {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mine-order-emoji {
+  font-size: 44rpx;
+  line-height: 1;
+}
+
+.mine-order-name {
+  font-size: 23rpx;
+  color: var(--ink-2);
+  margin-top: 14rpx;
+}
+
+/* 服务列表 */
+.mine-row {
+  display: flex;
+  align-items: center;
+  padding: 26rpx 28rpx;
+  border-top: 2rpx solid var(--line);
+}
+
+.mine-row-emoji {
+  font-size: 34rpx;
+  margin-right: 20rpx;
+}
+
+.mine-row-name {
+  flex: 1;
+  font-size: 28rpx;
+}
+
+.mine-row-arrow {
+  font-size: 32rpx;
+  color: var(--ink-3);
+}
+
+/* ===== 门店信息 ===== */
+.mine-store {
+  margin-top: 24rpx;
+  padding: 32rpx;
+  border-radius: var(--r);
+  background: linear-gradient(140deg, #fdf2e5, #f8e6d2);
+  border: 2rpx dashed rgba(194, 90, 46, 0.22);
+}
+
+.mine-store-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #a9662f;
+  margin-bottom: 16rpx;
+}
+
+.mine-store-line {
+  font-size: 25rpx;
+  color: #a5805f;
+  line-height: 1.8;
+}
+
+.mine-store-tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 16rpx;
+}
+
+.mine-store-tag {
+  font-size: 21rpx;
+  color: var(--brand);
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 20rpx;
+  padding: 6rpx 18rpx;
+  margin: 8rpx 12rpx 0 0;
+}

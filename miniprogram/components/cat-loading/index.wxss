@@ -1,0 +1,591 @@
+/* components/cat-loading/index.wxss
+ * 橙黄小猫加载动画。全部用 CSS 画出来，不需要任何图片文件。
+ * 配色跟着整站暖色走：猫身 #ffc96b / #f7ab45，陶土橘 #c25a2e，暖金 #dfa347。
+ */
+
+:host {
+  display: block;
+}
+
+/* ===================== 外壳：四种模式 ===================== */
+
+.catload {
+  position: relative;
+  box-sizing: border-box;
+}
+
+/* --- 整屏加载：米色半透明遮罩 + 中间一张奶油小卡片 --- */
+.catload--page {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.catload-mask {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(251, 243, 232, 0.9);
+}
+
+.catload-catcher {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.catload--page .catload-body {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 400rpx;
+  padding: 44rpx 56rpx 36rpx;
+  background: #fffdf9;
+  border: 2rpx solid rgba(223, 163, 71, 0.3);
+  border-radius: 40rpx;
+  box-shadow: 0 24rpx 60rpx rgba(160, 105, 60, 0.16);
+}
+
+/* --- 页面内嵌：占一块位置，居中显示 --- */
+.catload--inline {
+  display: flex;
+  justify-content: center;
+  padding: 30rpx 0 40rpx;
+}
+
+.catload--inline .catload-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* --- 迷你：当一个「小图标」用（图片加载中 / 按钮里） --- */
+.catload--mini {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.catload--mini .catload-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- 下拉刷新：小猫趴在顶部那一小条里 --- */
+.catload--refresher {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.catload--refresher .catload-body {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.catload--refresher .catload-text {
+  margin: 0 0 0 10rpx;
+  font-size: 24rpx;
+}
+
+/* ===================== 文字 / 圆点 ===================== */
+
+.catload-text {
+  margin-top: 20rpx;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #a9662f;
+  letter-spacing: 2rpx;
+}
+
+.catload-sub {
+  margin-top: 10rpx;
+  font-size: 22rpx;
+  color: #b6a797;
+  letter-spacing: 1rpx;
+}
+
+.catload-dots {
+  display: flex;
+  align-items: center;
+  margin-top: 18rpx;
+}
+
+.catload-dot {
+  width: 14rpx;
+  height: 14rpx;
+  margin: 0 7rpx;
+  border-radius: 50%;
+  background: #dfa347;
+  animation: catDot 1.2s ease-in-out infinite;
+}
+
+.catload-dot--1 {
+  background: #f2b455;
+}
+
+.catload-dot--2 {
+  background: #dfa347;
+  animation-delay: 0.14s;
+}
+
+.catload-dot--3 {
+  background: #c9793c;
+  animation-delay: 0.28s;
+}
+
+/* ===================== 小猫本体 ===================== */
+/* 舞台固定 260 × 250rpx，四种模式只换整体缩放，形状始终一致 */
+
+.cat {
+  position: relative;
+  width: 260rpx;
+  height: 250rpx;
+  transform-origin: 50% 50%;
+}
+
+.cat--page {
+  transform: scale(1);
+}
+
+.cat--inline {
+  transform: scale(0.62);
+  margin: -48rpx 0;
+}
+
+.cat--mini {
+  transform: scale(0.34);
+  margin: -82rpx -86rpx;
+}
+
+.cat--refresher {
+  transform: scale(0.42);
+  margin: -72rpx 0 -72rpx -90rpx;
+}
+
+/* 上下轻晃：整个小猫一起动 */
+.cat-bob {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  animation: catBob 1.5s ease-in-out infinite;
+}
+
+/* --- 地面小影子 --- */
+.cat-shadow {
+  position: absolute;
+  left: 52rpx;
+  top: 226rpx;
+  width: 156rpx;
+  height: 20rpx;
+  border-radius: 50%;
+  background: rgba(176, 118, 66, 0.16);
+  animation: catShadow 1.5s ease-in-out infinite;
+}
+
+/* --- 尾巴：一直摇 --- */
+.cat-tail {
+  position: absolute;
+  left: 196rpx;
+  top: 44rpx;
+  width: 20rpx;
+  height: 138rpx;
+  border-radius: 12rpx 12rpx 8rpx 8rpx;
+  background: linear-gradient(180deg, #ffc96b 0%, #eda033 100%);
+  transform-origin: 50% 100%;
+  animation: catTail 0.9s ease-in-out infinite alternate;
+}
+
+/* --- 身体 --- */
+.cat-body {
+  position: absolute;
+  left: 52rpx;
+  top: 112rpx;
+  width: 156rpx;
+  height: 112rpx;
+  border-radius: 80rpx 80rpx 44rpx 44rpx;
+  background: linear-gradient(165deg, #ffd88f 0%, #f7b04b 55%, #eda033 100%);
+  box-shadow: inset -8rpx -12rpx 0 rgba(226, 146, 48, 0.22);
+}
+
+/* --- 前爪 --- */
+.cat-paw {
+  position: absolute;
+  top: 190rpx;
+  width: 42rpx;
+  height: 28rpx;
+  border-radius: 50%;
+  background: #ffe0a8;
+  box-shadow: inset 0 -4rpx 0 rgba(226, 146, 48, 0.22);
+}
+
+.cat-paw--l {
+  left: 70rpx;
+}
+
+.cat-paw--r {
+  left: 148rpx;
+}
+
+/* --- 毛线球：左右滚 --- */
+.cat-ball {
+  position: absolute;
+  left: 6rpx;
+  top: 170rpx;
+  width: 54rpx;
+  height: 54rpx;
+  border-radius: 50%;
+  background: radial-gradient(circle at 34% 30%, #a9dceb 0%, #6fb9cd 60%, #57a3b8 100%);
+  box-shadow: 0 6rpx 12rpx rgba(120, 90, 60, 0.16);
+  animation: catBall 2.6s ease-in-out infinite alternate;
+}
+
+.cat-ball-line {
+  position: absolute;
+  height: 3rpx;
+  border-radius: 3rpx;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.cat-ball-line--1 {
+  left: 8rpx;
+  top: 18rpx;
+  width: 40rpx;
+  transform: rotate(24deg);
+}
+
+.cat-ball-line--2 {
+  left: 6rpx;
+  top: 32rpx;
+  width: 42rpx;
+  transform: rotate(-28deg);
+}
+
+.cat-ball-shine {
+  position: absolute;
+  left: 12rpx;
+  top: 12rpx;
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+}
+
+/* --- 头 --- */
+.cat-head {
+  position: absolute;
+  left: 46rpx;
+  top: 32rpx;
+  width: 168rpx;
+  height: 136rpx;
+  border-radius: 50% 50% 46% 46%;
+  background: linear-gradient(160deg, #ffd888 0%, #f9b24c 62%, #f2a63c 100%);
+  animation: catHead 3.2s ease-in-out infinite alternate;
+  box-shadow: 0 6rpx 0 -2rpx rgba(226, 146, 48, 0.3);
+}
+
+/* 耳朵：三角形 */
+.cat-ear {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 30rpx solid transparent;
+  border-right: 30rpx solid transparent;
+  border-bottom: 46rpx solid #f7ab45;
+}
+
+.cat-ear--l {
+  left: 10rpx;
+  top: -20rpx;
+  animation: catEarL 3.2s ease-in-out infinite;
+}
+
+.cat-ear--r {
+  left: 98rpx;
+  top: -20rpx;
+  animation: catEarR 3.6s ease-in-out infinite;
+}
+
+/* 耳朵里的粉色内耳 */
+.cat-ear-in {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 17rpx solid transparent;
+  border-right: 17rpx solid transparent;
+  border-bottom: 26rpx solid #ffb294;
+}
+
+.cat-ear-in--l {
+  left: 23rpx;
+  top: 8rpx;
+  animation: catEarL 3.2s ease-in-out infinite;
+}
+
+.cat-ear-in--r {
+  left: 111rpx;
+  top: 8rpx;
+  animation: catEarR 3.6s ease-in-out infinite;
+}
+
+/* 额头三根小虎斑 */
+.cat-stripe {
+  position: absolute;
+  top: 16rpx;
+  width: 8rpx;
+  height: 20rpx;
+  border-radius: 4rpx;
+  background: #e2902c;
+}
+
+.cat-stripe--1 {
+  left: 66rpx;
+  transform: rotate(-14deg);
+}
+
+.cat-stripe--2 {
+  left: 80rpx;
+  top: 12rpx;
+  height: 24rpx;
+}
+
+.cat-stripe--3 {
+  left: 94rpx;
+  transform: rotate(14deg);
+}
+
+/* 眼睛（会眨） */
+.cat-eye {
+  position: absolute;
+  top: 56rpx;
+  width: 30rpx;
+  height: 34rpx;
+  border-radius: 50%;
+  background: #4a3226;
+  animation: catBlink 4.4s ease-in-out infinite;
+}
+
+.cat-eye::after {
+  content: "";
+  position: absolute;
+  left: 6rpx;
+  top: 6rpx;
+  width: 11rpx;
+  height: 11rpx;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.cat-eye--l {
+  left: 40rpx;
+}
+
+.cat-eye--r {
+  left: 98rpx;
+}
+
+/* 腮红 */
+.cat-blush {
+  position: absolute;
+  top: 90rpx;
+  width: 30rpx;
+  height: 16rpx;
+  border-radius: 50%;
+  background: rgba(242, 124, 109, 0.34);
+}
+
+.cat-blush--l {
+  left: 14rpx;
+}
+
+.cat-blush--r {
+  left: 124rpx;
+}
+
+/* 鼻子 */
+.cat-nose {
+  position: absolute;
+  left: 75rpx;
+  top: 88rpx;
+  width: 0;
+  height: 0;
+  border-left: 9rpx solid transparent;
+  border-right: 9rpx solid transparent;
+  border-top: 12rpx solid #e2715a;
+}
+
+/* ω 形小嘴 */
+.cat-mouth {
+  position: absolute;
+  top: 102rpx;
+  width: 18rpx;
+  height: 12rpx;
+  border-bottom: 3rpx solid #c1745a;
+  border-radius: 0 0 60% 60%;
+}
+
+.cat-mouth--l {
+  left: 66rpx;
+}
+
+.cat-mouth--r {
+  left: 84rpx;
+}
+
+/* 胡须 */
+.cat-whisker {
+  position: absolute;
+  width: 34rpx;
+  height: 3rpx;
+  border-radius: 3rpx;
+  background: #e7a75e;
+}
+
+.cat-whisker--1 {
+  left: -16rpx;
+  top: 86rpx;
+  transform: rotate(-8deg);
+}
+
+.cat-whisker--2 {
+  left: -12rpx;
+  top: 102rpx;
+  transform: rotate(6deg);
+}
+
+.cat-whisker--3 {
+  left: 150rpx;
+  top: 86rpx;
+  transform: rotate(8deg);
+}
+
+.cat-whisker--4 {
+  left: 146rpx;
+  top: 102rpx;
+  transform: rotate(-6deg);
+}
+
+/* ===================== 动画 ===================== */
+
+@keyframes catBob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12rpx);
+  }
+}
+
+@keyframes catShadow {
+  0%,
+  100% {
+    transform: scale(1, 1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(0.86, 0.86);
+    opacity: 0.72;
+  }
+}
+
+@keyframes catTail {
+  0% {
+    transform: rotate(6deg);
+  }
+  100% {
+    transform: rotate(26deg);
+  }
+}
+
+@keyframes catHead {
+  0% {
+    transform: rotate(-3.5deg);
+  }
+  100% {
+    transform: rotate(4deg);
+  }
+}
+
+@keyframes catEarL {
+  0%,
+  62%,
+  100% {
+    transform: rotate(-14deg);
+  }
+  72% {
+    transform: rotate(-24deg);
+  }
+  84% {
+    transform: rotate(-9deg);
+  }
+}
+
+@keyframes catEarR {
+  0%,
+  40%,
+  100% {
+    transform: rotate(14deg);
+  }
+  52% {
+    transform: rotate(23deg);
+  }
+  64% {
+    transform: rotate(10deg);
+  }
+}
+
+@keyframes catBlink {
+  0%,
+  88%,
+  100% {
+    transform: scaleY(1);
+  }
+  92% {
+    transform: scaleY(0.1);
+  }
+  96% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes catBall {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate(42rpx, -6rpx) rotate(210deg);
+  }
+}
+
+@keyframes catDot {
+  0%,
+  80%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  40% {
+    transform: translateY(-10rpx);
+    opacity: 1;
+  }
+}

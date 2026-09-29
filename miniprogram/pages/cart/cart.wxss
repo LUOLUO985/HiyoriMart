@@ -1,0 +1,253 @@
+/* pages/cart/cart.wxss */
+.cart-page {
+  padding-bottom: 150rpx; /* 给结算栏留位置 */
+}
+
+.cart-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28rpx 32rpx 16rpx;
+}
+
+.cart-title {
+  font-size: 38rpx;
+  font-weight: 600;
+  letter-spacing: 2rpx;
+}
+
+.cart-count {
+  font-size: 22rpx;
+  color: var(--ink-3);
+  margin-left: 16rpx;
+}
+
+.cart-clear {
+  font-size: 24rpx;
+  color: var(--ink-3);
+  padding: 12rpx 0 12rpx 24rpx;
+}
+
+.empty-btn {
+  margin-top: 44rpx;
+  width: 320rpx;
+}
+
+/* ===== 商品行 ===== */
+.cart-list {
+  padding: 12rpx 24rpx 0;
+}
+
+.cart-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: var(--r);
+  padding: 22rpx 22rpx 22rpx 18rpx;
+  margin-bottom: 20rpx;
+  box-shadow: var(--shadow);
+}
+
+.cart-check {
+  width: 42rpx;
+  height: 42rpx;
+  flex: none;
+  border-radius: 50%;
+  border: 2rpx solid #ddcbb6;
+  background: #fdfaf5;
+  color: #fff;
+  font-size: 24rpx;
+  text-align: center;
+  line-height: 38rpx;
+}
+
+.cart-check.on {
+  border-color: var(--brand);
+  background: linear-gradient(135deg, #d2703f, var(--brand));
+}
+
+.cart-media {
+  width: 150rpx;
+  height: 150rpx;
+  flex: none;
+  margin: 0 20rpx;
+  border-radius: 16rpx;
+  overflow: hidden;
+  background: #fbf3e8;
+}
+
+.cart-img {
+  width: 100%;
+  height: 100%;
+}
+
+.cart-ph {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #fbeee1 0%, #f4e1cc 100%);
+  border: 2rpx dashed rgba(194, 90, 46, 0.28);
+  border-radius: 16rpx;
+}
+
+.cart-ph-txt {
+  font-size: 20rpx;
+  color: #c0a88f;
+}
+
+.cart-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.cart-name {
+  font-size: 28rpx;
+  font-weight: 600;
+  line-height: 1.35;
+  padding-right: 76rpx;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.cart-spec {
+  font-size: 22rpx;
+  color: var(--ink-3);
+  margin-top: 8rpx;
+}
+
+.cart-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 14rpx;
+}
+
+.cart-price {
+  display: flex;
+  align-items: baseline;
+  color: var(--brand);
+  font-weight: 600;
+}
+
+.cart-cur {
+  font-size: 22rpx;
+  margin-right: 2rpx;
+}
+
+.cart-num {
+  font-size: 34rpx;
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+  border-radius: 30rpx;
+  background: #f8f1e7;
+  padding: 4rpx;
+}
+
+.step-btn {
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--ink-2);
+  font-size: 28rpx;
+  text-align: center;
+  line-height: 46rpx;
+}
+
+.step-btn--on {
+  background: linear-gradient(135deg, #d2703f, var(--brand));
+  color: #fff;
+}
+
+.step-num {
+  min-width: 56rpx;
+  text-align: center;
+  font-size: 27rpx;
+}
+
+.cart-del {
+  position: absolute;
+  right: 22rpx;
+  top: 22rpx;
+  font-size: 22rpx;
+  color: #c0a88f;
+  padding: 6rpx 0 6rpx 20rpx;
+}
+
+.cart-tip {
+  text-align: center;
+  font-size: 22rpx;
+  color: var(--ink-3);
+  padding: 12rpx 0 30rpx;
+}
+
+/* ===== 结算栏 ===== */
+.cart-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 112rpx;
+  padding: 0 24rpx;
+  padding-bottom: env(safe-area-inset-bottom);
+  display: flex;
+  align-items: center;
+  background: rgba(255, 253, 249, 0.98);
+  border-top: 2rpx solid #f2e5d6;
+  box-shadow: 0 -6rpx 20rpx rgba(150, 100, 60, 0.07);
+}
+
+.cart-bar-all {
+  display: flex;
+  align-items: center;
+  margin-right: 20rpx;
+}
+
+.cart-bar-all-txt {
+  font-size: 26rpx;
+  color: var(--ink-2);
+  margin-left: 12rpx;
+}
+
+.cart-bar-total {
+  flex: 1;
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  margin-right: 24rpx;
+}
+
+.cart-bar-label {
+  font-size: 24rpx;
+  color: var(--ink-2);
+  margin-right: 8rpx;
+}
+
+.cart-bar-amount {
+  font-size: 38rpx;
+  font-weight: 600;
+  color: var(--brand);
+}
+
+.cart-bar-btn {
+  flex: none;
+  height: 76rpx;
+  padding: 0 44rpx;
+  border-radius: 38rpx;
+  background: linear-gradient(135deg, #d2703f, var(--brand));
+  color: #fff;
+  font-size: 30rpx;
+  letter-spacing: 2rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8rpx 18rpx rgba(194, 90, 46, 0.28);
+}

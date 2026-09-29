@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "Hiyori亚超",
+  "backgroundTextStyle": "dark",
+  "usingComponents": {
+    "goods-card": "/components/goods-card/index",
+    "cat-loading": "/components/cat-loading/index"
+  }
+}

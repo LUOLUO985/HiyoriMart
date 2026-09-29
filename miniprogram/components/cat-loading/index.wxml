@@ -1,0 +1,82 @@
+<!--
+  橙黄小猫加载动画 —— 全站统一的「等待」样式
+  mode: page 整屏遮罩 / inline 页面内嵌 / mini 小图标 / refresher 下拉刷新
+-->
+<view wx:if="{{shown}}" class="catload catload--{{mode}}">
+
+  <!-- 整屏模式：遮罩 + 拦一下手指，避免加载时页面还在滚 -->
+  <block wx:if="{{mode === 'page'}}">
+    <view class="catload-mask"></view>
+    <view class="catload-catcher" catchtouchmove="noop" catchtap="noop"></view>
+  </block>
+
+  <view class="catload-body">
+    <!-- ===== 小猫本体（纯 CSS，不需要图片） ===== -->
+    <view class="cat cat--{{mode}}">
+      <view class="cat-shadow"></view>
+
+      <view class="cat-bob">
+        <!-- 尾巴（画在身体后面） -->
+        <view class="cat-tail"></view>
+
+        <!-- 身体 -->
+        <view class="cat-body"></view>
+
+        <!-- 前爪 -->
+        <view class="cat-paw cat-paw--l"></view>
+        <view class="cat-paw cat-paw--r"></view>
+
+        <!-- 滚来滚去的毛线球 -->
+        <view class="cat-ball">
+          <view class="cat-ball-line cat-ball-line--1"></view>
+          <view class="cat-ball-line cat-ball-line--2"></view>
+          <view class="cat-ball-shine"></view>
+        </view>
+
+        <!-- 头 -->
+        <view class="cat-head">
+          <!-- 耳朵 -->
+          <view class="cat-ear cat-ear--l"></view>
+          <view class="cat-ear-in cat-ear-in--l"></view>
+          <view class="cat-ear cat-ear--r"></view>
+          <view class="cat-ear-in cat-ear-in--r"></view>
+
+          <!-- 额头小虎斑 -->
+          <view class="cat-stripe cat-stripe--1"></view>
+          <view class="cat-stripe cat-stripe--2"></view>
+          <view class="cat-stripe cat-stripe--3"></view>
+
+          <!-- 眼睛（会眨） -->
+          <view class="cat-eye cat-eye--l"></view>
+          <view class="cat-eye cat-eye--r"></view>
+
+          <!-- 腮红 -->
+          <view class="cat-blush cat-blush--l"></view>
+          <view class="cat-blush cat-blush--r"></view>
+
+          <!-- 鼻子 + 嘴 -->
+          <view class="cat-nose"></view>
+          <view class="cat-mouth cat-mouth--l"></view>
+          <view class="cat-mouth cat-mouth--r"></view>
+
+          <!-- 胡须 -->
+          <view class="cat-whisker cat-whisker--1"></view>
+          <view class="cat-whisker cat-whisker--2"></view>
+          <view class="cat-whisker cat-whisker--3"></view>
+          <view class="cat-whisker cat-whisker--4"></view>
+        </view>
+      </view>
+    </view>
+
+    <!-- ===== 文字 ===== -->
+    <view wx:if="{{text}}" class="catload-text">{{text}}</view>
+    <view wx:if="{{sub}}" class="catload-sub">{{sub}}</view>
+
+    <!-- ===== 三个跳动的小圆点 ===== -->
+    <view wx:if="{{dots && mode !== 'mini'}}" class="catload-dots">
+      <view class="catload-dot catload-dot--1"></view>
+      <view class="catload-dot catload-dot--2"></view>
+      <view class="catload-dot catload-dot--3"></view>
+    </view>
+  </view>
+</view>

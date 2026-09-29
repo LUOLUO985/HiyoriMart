@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "全部分类",
+  "usingComponents": {
+    "goods-card": "/components/goods-card/index",
+    "cat-loading": "/components/cat-loading/index"
+  }
+}

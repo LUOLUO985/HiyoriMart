@@ -1,0 +1,81 @@
+<!--pages/cart/cart.wxml 购物车-->
+<view class="cart-page">
+
+  <!-- 顶部 -->
+  <view class="cart-top" wx:if="{{items.length}}">
+    <view>
+      <text class="cart-title">购物车</text>
+      <text class="cart-count">共 {{sum.count}} 件</text>
+    </view>
+    <text class="cart-clear" bindtap="onClear">清空</text>
+  </view>
+
+  <!-- ===== 空购物车 ===== -->
+  <view wx:if="{{!items.length}}" class="empty">
+    <view class="empty-ico">🧺</view>
+    <view class="empty-title">购物车还是空的</view>
+    <view class="empty-desc">去挑几样家乡的味道，凑一顿热乎饭</view>
+    <view class="btn-brand empty-btn" bindtap="onGoHome">去逛逛</view>
+  </view>
+
+  <!-- ===== 商品列表 ===== -->
+  <view wx:else class="cart-list">
+    <view class="cart-card" wx:for="{{items}}" wx:key="id">
+      <view class="cart-check {{item.checked ? 'on' : ''}}" data-id="{{item.id}}" catchtap="onToggle">
+        <text wx:if="{{item.checked}}">✓</text>
+      </view>
+
+      <!-- 商品图片位 -->
+      <view class="cart-media">
+        <image wx:if="{{item.image}}" class="cart-img" src="{{item.image}}" mode="aspectFill" />
+        <view wx:else class="cart-ph">
+          <text class="cart-ph-txt">商品图</text>
+        </view>
+      </view>
+
+      <view class="cart-info">
+        <view class="cart-name">{{item.name}}</view>
+        <view class="cart-spec">{{item.spec}}</view>
+        <view class="cart-line">
+          <view class="cart-price">
+            <text class="cart-cur">{{shop.currency}}</text>
+            <text class="cart-num">{{item.price}}</text>
+          </view>
+          <view class="stepper">
+            <view class="step-btn" data-id="{{item.id}}" catchtap="onMinus">−</view>
+            <text class="step-num">{{item.count}}</text>
+            <view class="step-btn step-btn--on" data-id="{{item.id}}" catchtap="onPlus">＋</view>
+          </view>
+        </view>
+      </view>
+
+      <text class="cart-del" data-id="{{item.id}}" catchtap="onRemove">删除</text>
+    </view>
+
+    <view class="cart-tip">满 {{shop.currency}}39 免费配送 · 也可到店自提</view>
+  </view>
+
+  <!-- ===== 结算栏 ===== -->
+  <view class="cart-bar" wx:if="{{items.length}}">
+    <view class="cart-bar-all" bindtap="onToggleAll">
+      <view class="cart-check {{sum.allChecked ? 'on' : ''}}">
+        <text wx:if="{{sum.allChecked}}">✓</text>
+      </view>
+      <text class="cart-bar-all-txt">全选</text>
+    </view>
+    <view class="cart-bar-total">
+      <text class="cart-bar-label">合计</text>
+      <text class="cart-bar-amount">{{shop.currency}}{{sum.amountText}}</text>
+    </view>
+    <view class="cart-bar-btn" bindtap="onCheckout">结算({{sum.checkedCount}})</view>
+  </view>
+</view>
+
+<!-- 整屏小猫加载：第一次进购物车时，小猫去仓库清点 -->
+<cat-loading
+  id="cat-loading"
+  mode="page"
+  show="{{catShow}}"
+  text="{{catText}}"
+  sub="{{catSub}}"
+/>

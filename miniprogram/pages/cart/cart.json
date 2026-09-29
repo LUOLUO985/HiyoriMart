@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "购物车",
+  "usingComponents": {
+    "cat-loading": "/components/cat-loading/index"
+  }
+}

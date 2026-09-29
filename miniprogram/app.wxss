@@ -1,0 +1,257 @@
+/**app.wxss —— Hiyori亚超 · 全局设计变量与通用样式**/
+
+page {
+  /* ---------- 设计变量：温馨 · 家乡感 ---------- */
+  --brand: #c25a2e;          /* 陶土橘：灶火、酱缸 */
+  --brand-deep: #9c401c;
+  --brand-soft: #f7e3d5;
+  --accent: #dfa347;         /* 暖金：灯笼、麦黄 */
+  --leaf: #6e8f5e;           /* 蔬菜绿 */
+  --paper: #fbf3e8;          /* 宣纸米色：页面底色 */
+  --card: #ffffff;
+  --ink: #3a2a20;            /* 深褐：正文 */
+  --ink-2: #8a7868;          /* 次级文字 */
+  --ink-3: #b6a797;          /* 弱化文字 */
+  --line: #f0e2d3;           /* 分隔线 */
+  --r-sm: 16rpx;
+  --r: 24rpx;
+  --r-lg: 32rpx;
+  --shadow: 0 8rpx 24rpx rgba(150, 100, 60, 0.08);
+
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 28rpx;
+  line-height: 1.5;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 100%;
+}
+
+view,
+text,
+input,
+image,
+button {
+  box-sizing: border-box;
+}
+
+button {
+  background: initial;
+  padding: 0;
+  margin: 0;
+  line-height: normal;
+  font-size: inherit;
+  color: inherit;
+}
+
+button::after {
+  border: none;
+}
+
+button:focus {
+  outline: 0;
+}
+
+/* ---------- 页面骨架 ---------- */
+.page-wrap {
+  padding: 0 24rpx;
+}
+
+.safe-bottom {
+  padding-bottom: calc(24rpx + env(safe-area-inset-bottom));
+}
+
+/* ---------- 通用卡片 ---------- */
+.card {
+  background: var(--card);
+  border-radius: var(--r);
+  box-shadow: var(--shadow);
+}
+
+/* ---------- 小区块标题 ---------- */
+.sec {
+  margin-top: 36rpx;
+}
+
+.sec-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 0 24rpx;
+  margin-bottom: 20rpx;
+}
+
+.sec-title-wrap {
+  display: flex;
+  align-items: center;
+}
+
+.sec-bar {
+  width: 8rpx;
+  height: 32rpx;
+  border-radius: 8rpx;
+  background: linear-gradient(180deg, var(--accent), var(--brand));
+  margin-right: 14rpx;
+}
+
+.sec-title {
+  font-size: 34rpx;
+  font-weight: 600;
+  letter-spacing: 1rpx;
+}
+
+.sec-sub {
+  font-size: 22rpx;
+  color: var(--ink-3);
+  margin-top: 6rpx;
+}
+
+.sec-more {
+  font-size: 24rpx;
+  color: var(--brand);
+  padding: 6rpx 0 6rpx 20rpx;
+}
+
+/* ---------- 图片占位区（有图自动替换） ---------- */
+.ph {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #fbeee1 0%, #f4e1cc 100%);
+  border: 2rpx dashed rgba(194, 90, 46, 0.28);
+  border-radius: var(--r-sm);
+  color: #c0a88f;
+  overflow: hidden;
+}
+
+.ph-txt {
+  font-size: 22rpx;
+  letter-spacing: 1rpx;
+}
+
+.ph-hint {
+  font-size: 18rpx;
+  color: #cdb8a0;
+  margin-top: 4rpx;
+}
+
+/* ---------- 商品两列网格 ---------- */
+.goods-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0 24rpx;
+}
+
+.goods-cell {
+  width: 331rpx;
+  margin-bottom: 22rpx;
+}
+
+/* ---------- 按钮 ---------- */
+.btn-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 84rpx;
+  border-radius: 42rpx;
+  background: linear-gradient(135deg, #d2703f, var(--brand));
+  color: #fff;
+  font-size: 30rpx;
+  letter-spacing: 2rpx;
+  box-shadow: 0 10rpx 20rpx rgba(194, 90, 46, 0.25);
+}
+
+.btn-ghost {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 84rpx;
+  border-radius: 42rpx;
+  border: 2rpx solid var(--brand);
+  color: var(--brand);
+  font-size: 30rpx;
+}
+
+/* ---------- 搜索条（首页 / 分类页共用） ---------- */
+.searchbar {
+  display: flex;
+  align-items: center;
+  height: 88rpx;
+  padding: 0 28rpx;
+  background: #ffffff;
+  border-radius: 44rpx;
+  box-shadow: 0 8rpx 20rpx rgba(150, 100, 60, 0.1);
+}
+
+.searchbar-ico {
+  width: 34rpx;
+  height: 34rpx;
+  margin-right: 16rpx;
+  flex: none;
+}
+
+.searchbar-ph {
+  font-size: 26rpx;
+  color: var(--ink-3);
+}
+
+.tap-dim {
+  opacity: 0.75;
+}
+
+/* ---------- 空状态 ---------- */
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 120rpx 60rpx 60rpx;
+}
+
+.empty-ico {
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 72rpx;
+  background: linear-gradient(135deg, #fbeee1, #f2dcc4);
+  border: 2rpx dashed rgba(194, 90, 46, 0.3);
+}
+
+.empty-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  margin-top: 32rpx;
+}
+
+.empty-desc {
+  font-size: 24rpx;
+  color: var(--ink-3);
+  margin-top: 12rpx;
+  text-align: center;
+}
+
+/* ---------- 标签 ---------- */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  height: 40rpx;
+  padding: 0 16rpx;
+  border-radius: 20rpx;
+  background: var(--brand-soft);
+  color: var(--brand);
+  font-size: 22rpx;
+}
+
+.footer-note {
+  text-align: center;
+  font-size: 22rpx;
+  color: var(--ink-3);
+  padding: 40rpx 0 60rpx;
+  letter-spacing: 1rpx;
+}

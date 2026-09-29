@@ -1,0 +1,96 @@
+<!--pages/mine/mine.wxml 我的-->
+<view class="mine">
+
+  <!-- ===== 用户卡 ===== -->
+  <view class="mine-head">
+    <view class="mine-user" bindtap="onLogin" hover-class="tap-dim">
+      <!-- 头像图片位 -->
+      <view class="mine-avatar">
+        <image wx:if="{{user.avatar}}" class="mine-avatar-img" src="{{user.avatar}}" mode="aspectFill" />
+        <text wx:else class="mine-avatar-txt">头像</text>
+      </view>
+      <view class="mine-user-txt">
+        <view class="mine-name">{{user.nickname}}</view>
+        <view class="mine-desc">{{user.desc}}</view>
+      </view>
+    </view>
+
+    <view class="mine-badges">
+      <view class="mine-badge">
+        <text class="mine-badge-num">0</text>
+        <text class="mine-badge-txt">优惠券</text>
+      </view>
+      <view class="mine-badge">
+        <text class="mine-badge-num">0</text>
+        <text class="mine-badge-txt">积分</text>
+      </view>
+      <view class="mine-badge">
+        <text class="mine-badge-num">0</text>
+        <text class="mine-badge-txt">收藏</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- ===== 我的订单 ===== -->
+  <view class="mine-card">
+    <view class="mine-card-head">
+      <text class="mine-card-title">我的订单</text>
+      <text class="mine-card-more" data-id="all" bindtap="onOrder">全部 ›</text>
+    </view>
+    <view class="mine-orders">
+      <view
+        class="mine-order"
+        wx:for="{{orders}}"
+        wx:key="id"
+        data-id="{{item.id}}"
+        bindtap="onOrder"
+        hover-class="tap-dim"
+      >
+        <text class="mine-order-emoji">{{item.emoji}}</text>
+        <text class="mine-order-name">{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- ===== 常用服务 ===== -->
+  <view class="mine-card">
+    <view class="mine-card-head">
+      <text class="mine-card-title">常用服务</text>
+    </view>
+    <view
+      class="mine-row"
+      wx:for="{{services}}"
+      wx:key="id"
+      data-id="{{item.id}}"
+      bindtap="onService"
+      hover-class="tap-dim"
+    >
+      <text class="mine-row-emoji">{{item.emoji}}</text>
+      <text class="mine-row-name">{{item.name}}</text>
+      <text class="mine-row-arrow">›</text>
+    </view>
+  </view>
+
+  <!-- ===== 门店信息 ===== -->
+  <view class="mine-store" bindtap="onNavStore" hover-class="tap-dim">
+    <view class="mine-store-title">{{shop.name}}</view>
+    <view class="mine-store-line">{{shop.address}}</view>
+    <view class="mine-store-line">营业时间：{{shop.hours}}</view>
+    <view class="mine-store-line">电话：{{shop.phone}}</view>
+    <view class="mine-store-tags">
+      <text class="mine-store-tag">{{shop.pickup}}</text>
+      <text class="mine-store-tag">{{shop.delivery}}</text>
+    </view>
+  </view>
+
+  <view class="footer-note">{{shop.name}} · {{shop.city}}</view>
+</view>
+
+<!-- 整屏小猫加载：第一次进「我的」时，小猫去后台拿资料 -->
+<cat-loading
+  id="cat-loading"
+  mode="page"
+  show="{{catShow}}"
+  text="{{catText}}"
+  sub="{{catSub}}"
+/>

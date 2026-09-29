@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "cat-loading": "/components/cat-loading/index"
+  }
+}

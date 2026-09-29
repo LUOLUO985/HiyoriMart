@@ -1,0 +1,41 @@
+<view class="gcard {{layout === 'row' ? 'is-row' : ''}}">
+  <!-- 图片位：有图显示图，无图显示占位框 -->
+  <view class="gcard-media">
+    <image
+      wx:if="{{item.image && !imgError}}"
+      class="gcard-img"
+      src="{{item.image}}"
+      mode="aspectFill"
+      lazy-load="{{true}}"
+      bindload="onImgLoad"
+      binderror="onImgError"
+    />
+    <!-- 有图、但还在下载：先让小猫搬一会儿 -->
+    <view wx:if="{{item.image && !imgError && !imgLoaded}}" class="gcard-ph">
+      <cat-loading mode="mini" dots="{{false}}" />
+      <view class="gcard-ph-hint">小猫搬图中…</view>
+    </view>
+    <!-- 还没有图（或者图裂了）：占位框 -->
+    <view wx:if="{{!item.image || imgError}}" class="gcard-ph">
+      <view class="gcard-ph-txt">商品图片</view>
+      <view class="gcard-ph-hint">1:1</view>
+    </view>
+    <view wx:if="{{item.badge}}" class="gcard-badge">{{item.badge}}</view>
+  </view>
+
+  <view class="gcard-info">
+    <view class="gcard-name">{{item.name}}</view>
+    <view class="gcard-meta">
+      <text wx:if="{{item.origin}}" class="gcard-origin">{{item.origin}}</text>
+      <text wx:if="{{item.spec}}" class="gcard-spec">{{item.spec}}</text>
+    </view>
+    <view class="gcard-bottom">
+      <view class="gcard-price">
+        <text class="gcard-cur">{{currency}}</text>
+        <text class="gcard-num">{{item.price}}</text>
+        <text wx:if="{{item.unit}}" class="gcard-unit">{{item.unit}}</text>
+      </view>
+      <view class="gcard-add" catchtap="onAdd" hover-class="gcard-add--hover">＋</view>
+    </view>
+  </view>
+</view>

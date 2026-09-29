@@ -1,0 +1,75 @@
+<!--pages/category/category.wxml 分类-->
+<view class="cat-page">
+
+  <!-- 搜索入口 -->
+  <view class="cat-search-wrap">
+    <view class="searchbar" bindtap="onSearch" hover-class="tap-dim">
+      <image class="searchbar-ico" src="/images/icons/search.png" mode="aspectFit" />
+      <text class="searchbar-ph">搜索商品，例如「泡菜」</text>
+    </view>
+  </view>
+
+  <view class="cat-body">
+    <!-- 左侧分类导航 -->
+    <scroll-view class="cat-nav" scroll-y scroll-into-view="cat-{{activeId}}">
+      <view
+        wx:for="{{cats}}"
+        wx:key="id"
+        id="cat-{{item.id}}"
+        class="cat-nav-item {{activeId === item.id ? 'on' : ''}}"
+        data-id="{{item.id}}"
+        bindtap="onCatTap"
+      >
+        <text class="cat-nav-emoji">{{item.emoji}}</text>
+        <text class="cat-nav-name">{{item.name}}</text>
+      </view>
+    </scroll-view>
+
+    <!-- 右侧商品列表 -->
+    <scroll-view class="cat-main" scroll-y>
+      <!-- 分类图（图片位） -->
+      <view class="cat-banner ph">
+        <view class="ph-txt">分类图 · {{activeCat.name}}</view>
+        <view class="ph-hint">750 × 280</view>
+      </view>
+
+      <view class="cat-main-head">
+        <view class="cat-main-title">{{activeCat.name}}</view>
+        <view class="cat-main-count" wx:if="{{!switching}}">{{goods.length}} 件商品</view>
+      </view>
+
+      <view class="cat-goods" wx:if="{{!switching}}">
+        <view class="cat-goods-cell" wx:for="{{goods}}" wx:key="id">
+          <goods-card
+            layout="row"
+            item="{{item}}"
+            currency="{{shop.currency}}"
+            bind:add="onAdd"
+            bindtap="onGoods"
+            data-id="{{item.id}}"
+          />
+        </view>
+      </view>
+
+      <!-- 切分类时的等待：小猫跑去另一排货架看看 -->
+      <cat-loading
+        wx:if="{{switching}}"
+        mode="inline"
+        text="小猫去另一排货架看看…"
+        dots="{{false}}"
+      />
+
+      <view class="cat-loading">— 该分类商品陆续上架中 —</view>
+      <view class="cat-safe"></view>
+    </scroll-view>
+  </view>
+</view>
+
+<!-- 整屏小猫加载：页面第一次进来时用 -->
+<cat-loading
+  id="cat-loading"
+  mode="page"
+  show="{{catShow}}"
+  text="{{catText}}"
+  sub="{{catSub}}"
+/>
