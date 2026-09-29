@@ -16,21 +16,29 @@
 ## 目录约定
 
 ```
-miniprogram/
-├── app.json                 # 页面注册 + tabBar（颜色、图标）
-├── app.wxss                 # 全局设计变量与通用样式（改主题色只改这里）
-├── components/goods-card/   # 商品卡片组件（网格 / 横向列表两种排版）
-├── components/cat-loading/  # 🐱 橙黄小猫加载动画（全站统一的等待样式）
-├── utils/
-│   ├── config.js            # 门店名、slogan、地址、电话、货币符号
-│   ├── mock.js              # 分类、轮播图、商品、热搜词（占位数据）
-│   ├── cart.js              # 购物车数据层（本地缓存）
-│   └── cat-loading.js       # js 里随时开关「小猫加载」
-├── images/
-│   ├── tabbar/              # 底部五个图标（普通态 + 选中态）
-│   └── goods/               # 建议：商品图片放这里（目前为空）
-└── pages/                   # 五个 tab 页面
+仓库根目录
+├── miniprogram/             # 小程序本体
+│   ├── app.json             # 页面注册 + tabBar（颜色、图标）
+│   ├── app.wxss             # 全局设计变量与通用样式（改主题色只改这里）
+│   ├── components/
+│   │   ├── goods-card/      # 商品卡片组件（网格 / 横向列表两种排版）
+│   │   └── cat-loading/     # 🐱 橙黄小猫加载动画（全站统一的等待样式）
+│   ├── utils/
+│   │   ├── config.js        # 门店名、slogan、地址、电话、货币符号
+│   │   ├── mock.js          # 分类、轮播图、商品、热搜词（占位数据）
+│   │   ├── cart.js          # 购物车数据层（本地缓存）
+│   │   └── cat-loading.js   # js 里随时开关「小猫加载」
+│   ├── images/
+│   │   ├── tabbar/          # 底部五个图标（普通态 + 选中态）
+│   │   ├── icons/           # 页面里用到的图标（目前只有搜索）
+│   │   └── goods/           # 商品图片放这里（目前为空）
+│   └── pages/               # 五个 tab 页面
+├── cloudfunctions/          # 云函数根目录（目前为空，详见里面的 README）
+└── project.config.json      # 开发者工具项目配置
 ```
+
+> 云开发模板自带的教程页（`pages/index`、`pages/example`、`components/cloudTipModal`）、
+> 示例云函数和相关示例图片已经全部删除，仓库里只剩这个小程序真正用到的东西。
 
 ## 🐱 加载动画：橙黄小猫
 
@@ -128,6 +136,3 @@ catLoading.wrap(请求, "小猫正在结账…");              // 请求结束�
 - 下单与支付：购物车「结算」按钮处接入微信支付。
 - 真实数据：把 `utils/mock.js` 换成云开发数据库查询，`utils/cart.js` 的 `read / write`
   换成数据库读写，页面代码不用动。
-
-> 说明：`pages/index`、`pages/example`、`components/cloudTipModal` 是云开发模板自带的
-> 示例页，已从 `app.json` 中移除、不再显示，可以随时删除。
