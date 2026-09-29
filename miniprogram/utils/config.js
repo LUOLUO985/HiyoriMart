@@ -9,8 +9,6 @@ const SHOP = {
   address: "Lahti 市中心（点击卡片查看地图与门牌号）",
   hours: "周一至周日 10:00 - 20:00",
   phone: "040 000 0000",
-  pickup: "门店自提 · 30 分钟备好",
-  delivery: "满 39€ 免费配送 · 3 公里内",
   currency: "€",
 };
 

@@ -102,7 +102,7 @@ Page({
     }
     wx.showModal({
       title: "下单功能开发中",
-      content: `已选 ${this.data.sum.checkedCount} 件，合计 ${SHOP.currency}${this.data.sum.amountText}。后续可接入微信支付与自提时间选择。`,
+      content: `已选 ${this.data.sum.checkedCount} 件，合计 ${SHOP.currency}${this.data.sum.amountText}。线上支付尚未开通，敬请期待。`,
       showCancel: false,
       confirmColor: "#c25a2e",
     });

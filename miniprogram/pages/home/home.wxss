@@ -98,23 +98,6 @@
   margin-top: 28rpx;
 }
 
-.hero-tips {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 18rpx;
-}
-
-.hero-tip {
-  font-size: 21rpx;
-  color: #b06a3c;
-  background: rgba(255, 255, 255, 0.66);
-  border-radius: 20rpx;
-  padding: 6rpx 18rpx;
-  margin: 8rpx 12rpx 0 0;
-}
-
 /* ===== 轮播图 ===== */
 .banner-wrap {
   position: relative;

@@ -26,7 +26,6 @@
   <view class="gcard-info">
     <view class="gcard-name">{{item.name}}</view>
     <view class="gcard-meta">
-      <text wx:if="{{item.origin}}" class="gcard-origin">{{item.origin}}</text>
       <text wx:if="{{item.spec}}" class="gcard-spec">{{item.spec}}</text>
     </view>
     <view class="gcard-bottom">

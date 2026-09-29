@@ -126,7 +126,7 @@
   color: var(--ink-3);
 }
 
-/* 订单四宫格 */
+/* 订单入口 */
 .mine-orders {
   display: flex;
   padding: 20rpx 8rpx 28rpx;
@@ -193,19 +193,4 @@
   font-size: 25rpx;
   color: #a5805f;
   line-height: 1.8;
-}
-
-.mine-store-tags {
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 16rpx;
-}
-
-.mine-store-tag {
-  font-size: 21rpx;
-  color: var(--brand);
-  background: rgba(255, 255, 255, 0.7);
-  border-radius: 20rpx;
-  padding: 6rpx 18rpx;
-  margin: 8rpx 12rpx 0 0;
 }

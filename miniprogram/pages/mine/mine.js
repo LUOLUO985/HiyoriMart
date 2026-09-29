@@ -9,17 +9,15 @@ Page({
     user: {
       avatar: "",          // 头像图片位：填路径即可显示
       nickname: "Hiyori 的老朋友",
-      desc: "登录后可查看订单与优惠",
+      desc: "登录后可查看订单与收藏",
     },
     orders: [
-      { id: "unpaid", emoji: "💰", name: "待付款" },
       { id: "pickup", emoji: "🧺", name: "待自提" },
       { id: "done", emoji: "🍚", name: "已完成" },
       { id: "all", emoji: "📋", name: "全部订单" },
     ],
     services: [
       { id: "address", emoji: "📍", name: "收货地址" },
-      { id: "coupon", emoji: "🎫", name: "我的优惠券" },
       { id: "support", emoji: "☎️", name: "联系门店" },
       { id: "about", emoji: "🏪", name: "关于 Hiyori" },
     ],

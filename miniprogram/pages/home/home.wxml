@@ -32,10 +32,6 @@
       <text class="searchbar-ph">搜一搜：老干妈、五常大米、水饺…</text>
     </view>
 
-    <view class="hero-tips">
-      <text class="hero-tip">{{shop.pickup}}</text>
-      <text class="hero-tip">{{shop.delivery}}</text>
-    </view>
   </view>
 
   <!-- ===== 轮播图（图片位） ===== -->

@@ -95,21 +95,13 @@
   margin-top: 10rpx;
 }
 
-.gcard-origin {
-  font-size: 20rpx;
-  color: #c25a2e;
-  background: #f7e3d5;
-  border-radius: 8rpx;
-  padding: 2rpx 10rpx;
-  margin-right: 10rpx;
-}
-
 .gcard-spec {
   font-size: 22rpx;
   color: #b6a797;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  flex: 1;
 }
 
 .gcard-bottom {

@@ -93,8 +93,11 @@ catLoading.wrap(请求, "小猫正在结账…");              // 请求结束�
 
    ```js
    { id: "p01", cat: "sauce", name: "老干妈风味豆豉油制辣椒", spec: "280g / 瓶",
-     price: 3.9, origin: "贵州", badge: "招牌", image: "/images/goods/laoganma.png" }
+     price: 0, badge: "招牌", image: "/images/goods/laoganma.png" }
    ```
+
+   > 商品现在只有 名称 / 规格 / 价格 / 角标 / 图片 五个字段：价格统一填 `0`
+   > （线上暂不展示真实售价），产地字段已去掉。
 
 3. 保存即可，页面里的虚线占位框会自动换成图片。
 

@@ -52,7 +52,7 @@
       <text class="cart-del" data-id="{{item.id}}" catchtap="onRemove">删除</text>
     </view>
 
-    <view class="cart-tip">满 {{shop.currency}}39 免费配送 · 也可到店自提</view>
+    <view class="cart-tip">价格与库存以门店实际为准</view>
   </view>
 
   <!-- ===== 结算栏 ===== -->
